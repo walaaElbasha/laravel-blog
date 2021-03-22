@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\StorePostRequest;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
@@ -35,7 +35,7 @@ class PostController extends Controller
             'users' => User::all()
         ]);
     }
-    public function update($postId, Request $request)
+    public function update($postId, StorePostRequest $request)
     {
         $requestData= $request->all();
         $post = Post::find($postId);
@@ -62,8 +62,11 @@ class PostController extends Controller
         }
     
 
-    public function store(Request $request) // == calling request()
+    public function store(StorePostRequest $request) // == calling request()
     {
+  
+        
+        
         // $requestData = request()->all();
         
         //another syntax

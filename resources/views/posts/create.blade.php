@@ -13,6 +13,7 @@
       <label for="description">Description</label>
       <textarea class="form-control" name="description" id="description"> </textarea>
     </div>
+  
     <div class="form-group">
         <label for="post_creator">Post Creator</label>
         <select name="user_id" class="form-control" id="post_creator">
@@ -21,7 +22,19 @@
           @endforeach
         </select>
       </div>
+
+
+
+  
     <button type="submit" class="btn btn-success">Create Post</button>
   </form>
+
+@if($errors->any())
+    <div class="alert alert-danger"><ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul></div>
+@endif
 
 @endsection
