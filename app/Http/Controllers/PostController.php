@@ -1,7 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
@@ -35,13 +35,20 @@ class PostController extends Controller
             'users' => User::all()
         ]);
     }
-    public function update($postId, StorePostRequest $request)
+    public function update($postId,UpdatePostRequest $request)
     {
+        $request->validate([
+
+            'title'=> 'required|unique:posts,title,'.$postId
+        ]);
+        
         $requestData= $request->all();
         $post = Post::find($postId);
         $post->update($requestData);
         $post->save();
+        
         return redirect()->route('posts.index');
+
     }
 
   
@@ -62,11 +69,10 @@ class PostController extends Controller
         }
     
 
-    public function store(StorePostRequest $request) // == calling request()
+    public function store(StorePostRequest $request) 
     {
-  
-        
-        
+    
+     
         // $requestData = request()->all();
         
         //another syntax
