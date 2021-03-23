@@ -22,13 +22,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+Route::group(['middleware' => ['auth:sanctum']],function(){
 Route::get('posts',[ApiPostController::class, 'index']);
-
-
 Route::get('posts/{post}',[ApiPostController::class, 'show']);
 Route::post('posts',[ApiPostController::class, 'store']);
 
+});
 
 Route::post('/sanctum/token', function (Request $request) {
     $request->validate([
