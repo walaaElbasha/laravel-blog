@@ -1,10 +1,14 @@
 <?php
 
 namespace App\Http\Requests;
-
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
-class UpdatePostRequest extends FormRequest
+use App\Models\Post;
+
+
+class PostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,12 +30,19 @@ class UpdatePostRequest extends FormRequest
        
         return [
            
-                'title' => ['required','min:3'],
-                'description' => ['required','min:10'],
-                'user_id' => ['exists:users,id']
+            'title' => ['required','min:3',
+            Rule::unique('posts', 'title')->ignore($this->post)],
+            'slug' => ['required','min:3','alpha_dash',
+            Rule::unique('posts', 'title')->ignore($this->post)],  
+            'description' => ['required','min:10'],
+            'user_id' => ['exists:users,id']
         ];
+    
+
         
     }
+
+
     public function messages()
     {
         return [

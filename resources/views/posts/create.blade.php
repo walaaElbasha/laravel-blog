@@ -10,6 +10,10 @@
       <input type="text" name="title" class="form-control" id="title" aria-describedby="emailHelp">
     </div>
     <div class="form-group">
+        <label for="slug">Slug</label>
+        <input type="text" name="slug" class="form-control" value="{{ old('slug') }}" placeholder="post-slug">
+    </div>
+    <div class="form-group">
       <label for="description">Description</label>
       <textarea class="form-control" name="description" id="description"> </textarea>
     </div>
