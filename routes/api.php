@@ -1,7 +1,9 @@
 <?php
 
+use GuzzleHttp\Psr7\Uri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ApiPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('posts',[ApiPostController::class, 'index']);
+
+
+Route::get('posts/{post}',[ApiPostController::class, 'show']);
+Route::post('posts',[ApiPostController::class, 'store']);

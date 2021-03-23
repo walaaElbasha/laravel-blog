@@ -17,10 +17,7 @@
       <label for="description">Description</label>
       <textarea class="form-control" name="description" id="description" > {{ $post->description }}</textarea>
     </div>  
-    <div class="form-group">
-        <label for="slug">Slug</label>
-        <input type="text" name="slug" class="form-control" value="{{ old('slug') }}" placeholder="post-slug">
-    </div>
+
     <div class="form-group">
       <label  for="post_creator">Post Creator</label>
       <select name="user_id" class="form-control" id="post_creator">
